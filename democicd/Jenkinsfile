@@ -54,7 +54,7 @@ pipeline {
                 echo Startup completed
                 """
         }
-
+         }
         stage('Post Deployment Check') {
             steps {
                 echo 'Verifying deployment...'
