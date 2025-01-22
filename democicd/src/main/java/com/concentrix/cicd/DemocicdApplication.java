@@ -12,9 +12,4 @@ public class DemocicdApplication extends SpringBootServletInitializer {
 		SpringApplication.run(DemocicdApplication.class, args);
 	}
 
-	@Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(DemocicdApplication.class);
-    }
-
 }
