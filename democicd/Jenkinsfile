@@ -49,8 +49,6 @@ pipeline {
         echo Current Directory: %cd%
         call shutdown.bat
         echo Shutdown completed
-        call startup.bat
-        echo Startup completed
         """
 
         bat """
