@@ -11,6 +11,7 @@
 	<groupId>com.concentrix</groupId>
 	<artifactId>cicd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>democicd</name>
 	<description>Demo project for ci cd</description>
 	<url/>
@@ -43,6 +44,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>cicd</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
