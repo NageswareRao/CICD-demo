@@ -44,11 +44,14 @@ pipeline {
         stage('Restart Local Tomcat') {
             steps {
                 echo 'Restarting local Tomcat server...'
-                bat """
-                cd ${TOMCAT_BIN_DIR}
-                call shutdown.bat
-                call startup.bat
-                """
+        bat """
+        cd ${TOMCAT_BIN_DIR}
+        echo Current Directory: %cd%
+        call shutdown.bat
+        echo Shutdown completed
+        call startup.bat
+        echo Startup completed
+        """
             }
         }
 
