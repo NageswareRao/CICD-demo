@@ -19,7 +19,9 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo 'Building application using Maven...'
-                bat 'mvn clean package -DskipTests'
+               dir('democicd') { // Navigate to the correct directory
+                    bat 'mvn clean package -DskipTests'
+                }
             }
         }
 
