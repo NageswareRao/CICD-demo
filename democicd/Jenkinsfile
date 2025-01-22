@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo 'Deploying WAR file to local Tomcat...'
                 bat """
-                copy democicd/target\\*.war ${LOCAL_TOMCAT_DIR}
+                copy democicd\target\\*.war ${LOCAL_TOMCAT_DIR}
                 """
             }
         }
