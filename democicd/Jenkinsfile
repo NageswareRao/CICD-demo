@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 echo 'Cloning Git repository...'
-                git branch: 'main', credentialsId: 'git-credentials', url: 'https://github.com/your-org/your-repo.git'
+                git branch: 'main', credentialsId: 'b05b07c2-b674-40c6-a307-6e706dd74720', url: 'https://github.com/your-org/your-repo.git'
             }
         }
 
