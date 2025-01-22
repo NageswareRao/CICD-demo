@@ -43,16 +43,11 @@ pipeline {
 
          stage('restart Local Tomcat') {
             steps {
-                echo 'Shutting down local Tomcat server...'
-                bat """
-                cd ${TOMCAT_BIN_DIR}
-                echo Current Directory: %cd%
-                call shutdown.bat
-                echo Shutdown completed
-                echo 'Starting local Tomcat server...'
-                call startup.bat
-                echo Startup completed
-                """
+                bat 'net stop Tomcat10' 
+
+                
+                bat 'net start Tomcat10' 
+
         }
          }
         stage('Post Deployment Check') {
