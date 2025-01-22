@@ -49,7 +49,7 @@ pipeline {
                 echo Current Directory: %cd%
                 call shutdown.bat
                 echo Shutdown completed
-                timeout /t 10
+            
                 """
             }
         }
