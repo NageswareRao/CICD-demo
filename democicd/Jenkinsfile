@@ -52,6 +52,13 @@ pipeline {
         call startup.bat
         echo Startup completed
         """
+
+        bat """
+        cd ${TOMCAT_BIN_DIR}
+        echo Current Directory: %cd%
+        call startup.bat
+        echo Startup completed
+        """
             }
         }
 
