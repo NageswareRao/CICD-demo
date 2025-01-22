@@ -28,7 +28,7 @@ pipeline {
         stage('Package Artifact') {
             steps {
                 echo 'Packaging application for deployment...'
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                archiveArtifacts artifacts: 'democicd/target/*.war', fingerprint: true
             }
         }
 
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo 'Deploying WAR file to local Tomcat...'
                 bat """
-                copy target\\*.war ${LOCAL_TOMCAT_DIR}
+                copy democicd/target\\*.war ${LOCAL_TOMCAT_DIR}
                 """
             }
         }
