@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         LOCAL_TOMCAT_DIR = 'C:\\Users\\nveerla\\Desktop\\apache-tomcat-10.1.20\\webapps' // Adjust the Tomcat webapps directory path
-        APP_URL = 'http://localhost:8080/cicd' // Adjust the application's context path
+        APP_URL = 'http://localhost:8081/cicd' // Adjust the application's context path
         TOMCAT_BIN_DIR = 'C:\\Users\\nveerla\\Desktop\\apache-tomcat-10.1.20\\bin' // Tomcat bin directory for restarting
     }
 
