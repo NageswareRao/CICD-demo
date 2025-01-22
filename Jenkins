@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        LOCAL_TOMCAT_DIR = 'C:\Users\nveerla\Desktop\apache-tomcat-10.1.20\webapps' // Replace with your Tomcat's webapps directory
-        APP_URL = 'http://localhost:8080/democicd' // Replace <your-app> with your application's context path
+        LOCAL_TOMCAT_DIR = 'C:\\Users\\nveerla\\Desktop\\apache-tomcat-10.1.20\\webapps' // Adjust the Tomcat webapps directory path
+        APP_URL = 'http://localhost:8080/democicd' // Adjust the application's context path
+        TOMCAT_BIN_DIR = 'C:\\Users\\nveerla\\Desktop\\apache-tomcat-10.1.20\\bin' // Tomcat bin directory for restarting
     }
 
     stages {
@@ -18,7 +19,7 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo 'Building application using Maven...'
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
@@ -32,18 +33,20 @@ pipeline {
         stage('Deploy to Local Machine') {
             steps {
                 echo 'Deploying WAR file to local Tomcat...'
-                sh '''
-                cp target/*.war ${LOCAL_TOMCAT_DIR}
-                '''
+                bat """
+                copy target\\*.war ${LOCAL_TOMCAT_DIR}
+                """
             }
         }
 
         stage('Restart Local Tomcat') {
             steps {
                 echo 'Restarting local Tomcat server...'
-                sh '''
-                sudo systemctl restart tomcat
-                '''
+                bat """
+                cd ${TOMCAT_BIN_DIR}
+                call shutdown.bat
+                call startup.bat
+                """
             }
         }
 
@@ -51,7 +54,7 @@ pipeline {
             steps {
                 echo 'Verifying deployment...'
                 script {
-                    def response = sh(script: "curl -I ${APP_URL}", returnStdout: true).trim()
+                    def response = bat(script: "curl -I ${APP_URL}", returnStdout: true).trim()
                     echo "Response: ${response}"
                 }
             }
@@ -60,14 +63,14 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful! Notifying team...'
-            mail to: 'team@example.com',
+            echo 'Deployment successful!'
+            mail to: 'nageswararao.veerla@concentrix.com',
                  subject: 'Deployment Successful',
                  body: 'The latest build has been deployed successfully to the local Tomcat server.'
         }
         failure {
             echo 'Deployment failed! Notifying team...'
-            mail to: 'team@example.com',
+            mail to: 'nageswararao.veerla@concentrix.com',
                  subject: 'Deployment Failed',
                  body: 'The deployment to the local machine failed. Please check Jenkins logs for details.'
         }
