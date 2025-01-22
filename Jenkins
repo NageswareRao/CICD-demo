@@ -60,19 +60,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            echo 'Deployment successful!'
-            mail to: 'nageswararao.veerla@concentrix.com',
-                 subject: 'Deployment Successful',
-                 body: 'The latest build has been deployed successfully to the local Tomcat server.'
-        }
-        failure {
-            echo 'Deployment failed! Notifying team...'
-            mail to: 'nageswararao.veerla@concentrix.com',
-                 subject: 'Deployment Failed',
-                 body: 'The deployment to the local machine failed. Please check Jenkins logs for details.'
-        }
-    }
 }
