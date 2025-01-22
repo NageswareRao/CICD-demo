@@ -41,22 +41,28 @@ pipeline {
             }
         }
 
-        stage('Restart Local Tomcat') {
+         stage('Shutdown Local Tomcat') {
             steps {
-                echo 'Restarting local Tomcat server...'
-        bat """
-        cd ${TOMCAT_BIN_DIR}
-        echo Current Directory: %cd%
-        call shutdown.bat
-        echo Shutdown completed
-        """
+                echo 'Shutting down local Tomcat server...'
+                bat """
+                cd ${TOMCAT_BIN_DIR}
+                echo Current Directory: %cd%
+                call shutdown.bat
+                echo Shutdown completed
+                timeout /t 10
+                """
+            }
+        }
 
-        bat """
-        cd ${TOMCAT_BIN_DIR}
-        echo Current Directory: %cd%
-        call startup.bat
-        echo Startup completed
-        """
+        stage('Startup Local Tomcat') {
+            steps {
+                echo 'Starting local Tomcat server...'
+                bat """
+                cd ${TOMCAT_BIN_DIR}
+                echo Current Directory: %cd%
+                call startup.bat
+                echo Startup completed
+                """
             }
         }
 
