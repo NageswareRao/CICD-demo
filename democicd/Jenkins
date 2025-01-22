@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+
+    environment {
+        LOCAL_TOMCAT_DIR = 'C:\Users\nveerla\Desktop\apache-tomcat-10.1.20\webapps' // Replace with your Tomcat's webapps directory
+        APP_URL = 'http://localhost:8080/democicd' // Replace <your-app> with your application's context path
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                echo 'Cloning Git repository...'
+                git branch: 'main', credentialsId: 'git-credentials', url: 'https://github.com/your-org/your-repo.git'
+            }
+        }
+
+        stage('Build Application') {
+            steps {
+                echo 'Building application using Maven...'
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Package Artifact') {
+            steps {
+                echo 'Packaging application for deployment...'
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+            }
+        }
+
+        stage('Deploy to Local Machine') {
+            steps {
+                echo 'Deploying WAR file to local Tomcat...'
+                sh '''
+                cp target/*.war ${LOCAL_TOMCAT_DIR}
+                '''
+            }
+        }
+
+        stage('Restart Local Tomcat') {
+            steps {
+                echo 'Restarting local Tomcat server...'
+                sh '''
+                sudo systemctl restart tomcat
+                '''
+            }
+        }
+
+        stage('Post Deployment Check') {
+            steps {
+                echo 'Verifying deployment...'
+                script {
+                    def response = sh(script: "curl -I ${APP_URL}", returnStdout: true).trim()
+                    echo "Response: ${response}"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful! Notifying team...'
+            mail to: 'team@example.com',
+                 subject: 'Deployment Successful',
+                 body: 'The latest build has been deployed successfully to the local Tomcat server.'
+        }
+        failure {
+            echo 'Deployment failed! Notifying team...'
+            mail to: 'team@example.com',
+                 subject: 'Deployment Failed',
+                 body: 'The deployment to the local machine failed. Please check Jenkins logs for details.'
+        }
+    }
+}
