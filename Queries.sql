@@ -280,3 +280,10 @@ ORDER BY iq.question_id;
 
   )
  
+Mnuallu keept as inactive
+"SR-0000000079"
+"SR-0000000076"
+"SR-0000000078"
+"SR-0000000068"
+"SR-0000000070"
+"SR-0000000199"
