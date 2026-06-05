@@ -280,7 +280,7 @@ ORDER BY iq.question_id;
 
   )
  
-Mnuallu keept as inactive
+Mnually keept as inactive
 "SR-0000000079"
 "SR-0000000076"
 "SR-0000000078"
