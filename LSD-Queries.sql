@@ -80,29 +80,7 @@ VALUES (
     NULL                               -- license_date
 );
 
-INSERT INTO role_reports (
-    created_date,
-    updated_date,
-    active,
-    email,
-    is_admin,
-    mode,
-    reportId,
-    role_id,
-    sequence,
-    transition
-) VALUES (
-    CURRENT_TIMESTAMP,
-    CURRENT_TIMESTAMP,
-    true,
-    '',
-    true,
-    'SLIDESHOW',
-    '',
-    '',
-    1,
-    15
-);
+concentrix_ymangleka
 
 INSERT INTO msil_dms.am_user_region (
     user_id,
