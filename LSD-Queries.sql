@@ -78,3 +78,48 @@ VALUES (
     NULL,                              -- validation_url_new
     NULL                               -- license_date
 );
+
+INSERT INTO role_reports (
+    created_date,
+    updated_date,
+    active,
+    email,
+    is_admin,
+    mode,
+    reportId,
+    role_id,
+    sequence,
+    transition
+) VALUES (
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP,
+    true,
+    '',
+    true,
+    'SLIDESHOW',
+    '',
+    '',
+    1,
+    15
+);
+
+INSERT INTO msil_dms.am_user_region (
+    user_id,
+    zone_cd,
+    region_cd,
+    user_type,
+    user_name,
+    user_desc,
+    kpi_access_right
+)
+SELECT
+    'concentrix_nveerla' AS user_id,
+    zone_cd,
+    region_cd,
+    user_type,
+    user_name,
+    user_desc,
+    kpi_access_right
+FROM msil_dms.am_user_region
+WHERE user_id = 'ttnew_abisht'
+  AND user_name = 'Aayushi';
