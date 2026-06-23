@@ -1,3 +1,4 @@
+concentrix_ymangleka
 INSERT INTO msil_dms.am_users (
     password,
     user_name,
