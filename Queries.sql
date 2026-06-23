@@ -1,6 +1,6 @@
 Select * from msil_supervisor.campaign_master where campaign_id = :campaignId and status = archived' order by created_at desc limit 1
 livesales-uat-postgresql-rds-instance-1.clyik8u2cpps.ap-south-1.rds.amazonaws.com
-    livesales-redshift-prod-cluster.cns8657zocvv.ap-south-1.redshift.amazonaws.com:5439/
+    livesales-redshift-prod-cluster.cns8657zocvv.ap-south-1.redshift.amazonaws.com:5439/ ORDER BY CAST(REPLACE(report_id, 'RP', '') AS INTEGER);
 SELECT qr.id, qr.option_sequence, qr.response_type_fkid
 FROM msil_supervisor.campaign_question cq
 JOIN msil_supervisor.question_response  qr ON qr.question_fkid = cq.id
