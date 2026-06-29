@@ -1,4 +1,4 @@
-concentrix_ymangleka
+
 INSERT INTO msil_dms.am_users (
     password,
     user_name,
@@ -80,7 +80,29 @@ VALUES (
     NULL                               -- license_date
 );
 
-concentrix_ymangleka
+INSERT INTO role_reports (
+    created_date,
+    updated_date,
+    active,
+    email,
+    is_admin,
+    mode,
+    reportId,
+    role_id,
+    sequence,
+    transition
+) VALUES (
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP,
+    true,
+    '566217',
+    true,
+    'SLIDESHOW',
+    'RP1',
+    'HO-TOPMGMT',
+    1,
+    15
+);
 
 INSERT INTO msil_dms.am_user_region (
     user_id,
