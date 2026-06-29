@@ -94,3 +94,32 @@ INSERT INTO role_reports (
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, @email, true, 'SLIDESHOW', 'RP78', @designation, 77, 15),
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, @email, true, 'SLIDESHOW', 'RP79', @designation, 78, 15),
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, @email, true, 'SLIDESHOW', 'RP80', @designation, 79, 15);
+
+INSERT INTO role_reports (
+    created_date,
+    updated_date,
+    active,
+    email,
+    is_admin,
+    mode,
+    reportid,
+    role_id,
+    sequence,
+    transition
+)
+SELECT
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP,
+    true,
+    '566217',
+    true,
+    'SLIDESHOW',
+    'RP' || i,
+    'HO-TOPMGMT',
+    CASE
+        WHEN i <= 40 THEN i
+        ELSE i - 1
+    END,
+    15
+FROM generate_series(1, 80) AS i
+WHERE i <> 41;
